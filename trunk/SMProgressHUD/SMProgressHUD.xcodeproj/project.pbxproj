@@ -14,6 +14,8 @@
 		C5D69C251BC7AD1900E3C2C5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5D69C241BC7AD1900E3C2C5 /* Images.xcassets */; };
 		C5D69C281BC7AD1900E3C2C5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5D69C261BC7AD1900E3C2C5 /* LaunchScreen.xib */; };
 		C5D69C341BC7AD1900E3C2C5 /* SMProgressHUDTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D69C331BC7AD1900E3C2C5 /* SMProgressHUDTests.m */; };
+		C5D69C401BC7AEDE00E3C2C5 /* SMProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D69C3F1BC7AEDE00E3C2C5 /* SMProgressHUD.m */; };
+		C5D69C431BC7B1E600E3C2C5 /* progresshud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5D69C421BC7B1E600E3C2C5 /* progresshud.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,9 @@
 		C5D69C2D1BC7AD1900E3C2C5 /* SMProgressHUDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SMProgressHUDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D69C321BC7AD1900E3C2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D69C331BC7AD1900E3C2C5 /* SMProgressHUDTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMProgressHUDTests.m; sourceTree = "<group>"; };
+		C5D69C3E1BC7AEDE00E3C2C5 /* SMProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressHUD.h; sourceTree = "<group>"; };
+		C5D69C3F1BC7AEDE00E3C2C5 /* SMProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressHUD.m; sourceTree = "<group>"; };
+		C5D69C421BC7B1E600E3C2C5 /* progresshud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = progresshud.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 		C5D69C161BC7AD1900E3C2C5 /* SMProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
+				C5D69C3D1BC7AEBE00E3C2C5 /* SMProgressHUD */,
 				C5D69C1B1BC7AD1900E3C2C5 /* AppDelegate.h */,
 				C5D69C1C1BC7AD1900E3C2C5 /* AppDelegate.m */,
 				C5D69C1E1BC7AD1900E3C2C5 /* ViewController.h */,
@@ -117,6 +123,16 @@
 				C5D69C321BC7AD1900E3C2C5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5D69C3D1BC7AEBE00E3C2C5 /* SMProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				C5D69C421BC7B1E600E3C2C5 /* progresshud.bundle */,
+				C5D69C3E1BC7AEDE00E3C2C5 /* SMProgressHUD.h */,
+				C5D69C3F1BC7AEDE00E3C2C5 /* SMProgressHUD.m */,
+			);
+			path = SMProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D69C431BC7B1E600E3C2C5 /* progresshud.bundle in Resources */,
 				C5D69C231BC7AD1900E3C2C5 /* Main.storyboard in Resources */,
 				C5D69C281BC7AD1900E3C2C5 /* LaunchScreen.xib in Resources */,
 				C5D69C251BC7AD1900E3C2C5 /* Images.xcassets in Resources */,
@@ -219,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D69C401BC7AEDE00E3C2C5 /* SMProgressHUD.m in Sources */,
 				C5D69C201BC7AD1900E3C2C5 /* ViewController.m in Sources */,
 				C5D69C1D1BC7AD1900E3C2C5 /* AppDelegate.m in Sources */,
 				C5D69C1A1BC7AD1900E3C2C5 /* main.m in Sources */,
@@ -416,6 +434,7 @@
 				C5D69C391BC7AD1900E3C2C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C5D69C3A1BC7AD1900E3C2C5 /* Build configuration list for PBXNativeTarget "SMProgressHUDTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +443,7 @@
 				C5D69C3C1BC7AD1900E3C2C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
