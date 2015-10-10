@@ -10,4 +10,5 @@
 
 @interface SMProgressHUD : NSObject
 +(instancetype)shareInstancetype;
+- (void)showLoadingWithTip:(NSString *)tip;
 @end

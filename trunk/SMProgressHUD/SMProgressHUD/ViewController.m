@@ -17,8 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [SMProgressHUD shareInstancetype];
+}
+
+- (IBAction)showLoading:(id)sender
+{
+    [[SMProgressHUD shareInstancetype] showLoadingWithTip:nil];
 }
 
 - (void)didReceiveMemoryWarning {
