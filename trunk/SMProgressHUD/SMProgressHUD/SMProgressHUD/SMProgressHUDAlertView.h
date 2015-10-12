@@ -20,9 +20,13 @@ typedef NS_ENUM(NSInteger,SMProgressHUDAlertViewStyle)
     SMProgressHUDAlertViewStyleLoginAndPasswordInput
 };
 
+@protocol SMProgressHUDAlertViewDelegate <NSObject>
+- (void)alertView:(SMProgressHUDAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+@end
 
 @interface SMProgressHUDAlertView : UIView
 @property (nonatomic, strong, readonly) UITextField *plainTextInput;
 @property (nonatomic, strong, readonly) UITextField *secureTextInput;
--(instancetype)initWithTitle:(NSString *)title message:(NSString *)message alertViewStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles completion:(AlertViewCompletion)completion;
+@property (weak, nonatomic) id<SMProgressHUDAlertViewDelegate> delegate;
+-(instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id/*<SMProgressHUDAlertViewDelegate>*/)delegate alertViewStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 @end

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SMProgressHUD.h"
 
-@interface ViewController ()
+@interface ViewController ()<SMProgressHUDAlertViewDelegate>
 
 @end
 
@@ -24,16 +24,17 @@
     [[SMProgressHUD shareInstancetype] showLoadingWithTip:nil];
 }
 - (IBAction)showAlertView:(id)sender {
-    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] completion:^(SMProgressHUDAlertView *alertView, NSInteger buttonIndex) {
-        NSLog(@"Click The Button At %ld", (long)buttonIndex);
-    }];
+    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." delegate:nil alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] ];
 }
 
 - (IBAction)showAlertViewWithInput:(id)sender {
-    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." alertStyle:SMProgressHUDAlertViewStylePlainTextInput cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] completion:^(SMProgressHUDAlertView *alertView, NSInteger buttonIndex) {
-        NSLog(@"Click The Button At %ld", (long)buttonIndex);
+    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." delegate:nil alertStyle:SMProgressHUDAlertViewStylePlainTextInput cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] ];
+}
 
-    }];
+- (void)alertView:(SMProgressHUDAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"Click The Button At %ld", (long)buttonIndex);
+    [self showLoadingWithTip:nil];
 }
 
 - (IBAction)showTip:(id)sender {
@@ -45,12 +46,10 @@
 }
 
 - (IBAction)showAlertLoadingTip:(id)sender {
-//    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] completion:^(SMProgressHUDAlertView *alertView, NSInteger buttonIndex)
-//    {
-//        NSLog(@"Click The Button At %ld", (long)buttonIndex);
-//        self.view setBackgroundColor:[UIColor re]
-//    }];
+    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." delegate:self alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] ];
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -12,8 +12,8 @@
 @interface SMProgressHUD : NSObject
 +(instancetype)shareInstancetype;
 - (void)showLoadingWithTip:(NSString *)tip;
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message alertStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles delegate:(id)delegate completion:(void (^)(SMProgressHUDAlertView *alertView, NSInteger buttonIndex))completion;
-
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id/*<SMProgressHUDAlertViewDelegate>*/)delegate alertStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles;
 - (void)showTip:(NSString*)tip;
 - (void)dismiss;
+- (void)alertViewDismiss;
 @end

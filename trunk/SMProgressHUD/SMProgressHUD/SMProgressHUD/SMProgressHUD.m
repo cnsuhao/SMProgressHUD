@@ -94,6 +94,11 @@ typedef enum : NSUInteger {
         [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
         return;
     }
+    else if (SMProgressHUDStateAlert == _state)
+    {
+        [_alertView removeFromSuperview];
+        _alertView = nil;
+    }
     
     [_window setHidden:NO];
     [_window addSubview:self.loadingView];
@@ -112,7 +117,7 @@ typedef enum : NSUInteger {
 }
 
 #pragma mark - AlertView
-- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message alertStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles completion:(void (^)(SMProgressHUDAlertView *alertView, NSInteger buttonIndex))completion
+-(void)showAlertWithTitle:(NSString *)title message:(NSString *)message delegate:(id/*<SMProgressHUDAlertViewDelegate>*/)delegate alertStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles
 {
     if (SMProgressHUDStateLoading == _state)
     {
@@ -127,7 +132,7 @@ typedef enum : NSUInteger {
     }
     
     _state = SMProgressHUDStateAlert;
-    _alertView = [[SMProgressHUDAlertView alloc] initWithTitle:title message:message alertViewStyle:alertStyle cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles completion:completion];
+    _alertView = [[SMProgressHUDAlertView alloc] initWithTitle:title message:message delegate:delegate alertViewStyle:alertStyle cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles];
     [_window addSubview:_alertView];
     [_window setHidden:NO];
     [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
@@ -179,6 +184,22 @@ typedef enum : NSUInteger {
 - (void)cleanAllView
 {
     
+}
+
+- (void)alertViewDismiss
+{
+    if (SMProgressHUDStateAlert == _state)
+    {
+        [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
+            [_maskLayer setAlpha:0];
+            [_alertView setAlpha:0];
+        } completion:^(BOOL finished) {
+            [_window setHidden:YES];
+            [_alertView removeFromSuperview];
+            _alertView = nil;
+        }];
+        _state = SMProgressHUDStateStatic;
+    }
 }
 
 #pragma mark 消失

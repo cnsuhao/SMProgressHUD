@@ -9,26 +9,26 @@
 #import "SMProgressHUDAlertView.h"
 #import "SMProgressHUDConfigure.h"
 #import "SMProgressHUD.h"
+#import <objc/runtime.h>
 
 static const NSInteger CANCELINDEX = 0;
 
 @interface SMProgressHUDAlertView() <UITextFieldDelegate>
-@property (strong, nonatomic) AlertViewCompletion completion;
 @end
 
 @implementation SMProgressHUDAlertView
--(instancetype)initWithTitle:(NSString *)title message:(NSString *)message alertViewStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles completion:(AlertViewCompletion)completion
+-(instancetype)initWithTitle:(NSString *)title message:(NSString *)message delegate:(id/*<SMProgressHUDAlertViewDelegate>*/)delegate alertViewStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles
 {
     CGRect frame = CGRectMake(0, 0, kSMProgressHUDAlertViewWidth, 20);
     if (self = [super initWithFrame:frame])
     {
-        _completion = completion;
         [self.layer setCornerRadius:kSMProgressHUDCornerRadius];
         [self setBackgroundColor:[UIColor whiteColor]];
         [self.layer  setShadowOffset:CGSizeMake(0, 2)];
         [self.layer setShadowOpacity:0.2];
         [self.layer setMasksToBounds:YES];
         [self setAlpha:0];
+        _delegate = delegate;
         
         CGFloat x = 0;
         CGFloat y = 10.f;
@@ -160,13 +160,12 @@ static const NSInteger CANCELINDEX = 0;
 
 - (void)alertViewDidClickedButtonAtIndex:(UIButton *)senger
 {
-    if (_completion)
+    if (_delegate)
     {
-        _completion(self, senger.tag);
+        [_delegate alertView:self clickedButtonAtIndex:senger.tag];
     }
-    _completion = nil;
     
-    [[SMProgressHUD shareInstancetype] dismiss];
+    [[SMProgressHUD shareInstancetype] alertViewDismiss];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
