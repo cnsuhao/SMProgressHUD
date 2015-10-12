@@ -84,6 +84,11 @@ typedef enum : NSUInteger {
     return _loadingView;
 }
 
+- (void)showLoading
+{
+    return [self showLoadingWithTip:nil];
+}
+
 - (void)showLoadingWithTip:(NSString *)tip
 {
     if (SMProgressHUDStateLoading == _state)
@@ -104,6 +109,7 @@ typedef enum : NSUInteger {
     [_window addSubview:self.loadingView];
     _state = SMProgressHUDStateLoading;
     _loadingCount += 1;
+    [_loadingView setTipText:tip];
     [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
         [_maskLayer setAlpha:1];
         [_loadingView setAlpha:1];
@@ -144,7 +150,27 @@ typedef enum : NSUInteger {
 
 #pragma mark -TipView
 #pragma mark 显示提示
-- (void)showTip:(NSString*)tip
+- (void)showTip:(NSString *)tip
+{
+    return [self showTip:tip type:SMProgressHUDTipTypeSucceed completion:nil];
+}
+
+- (void)showErrorTip:(NSString *)tip
+{
+    return [self showTip:tip type:SMProgressHUDTipTypeError completion:nil];
+}
+
+- (void)showWarningTip:(NSString *)tip
+{
+    return [self showTip:tip type:SMProgressHUDTipTypeWarning completion:nil];
+}
+
+- (void)showDoneTip:(NSString *)tip
+{
+    return [self showTip:tip type:SMProgressHUDTipTypeDone completion:nil];
+}
+
+- (void)showTip:(NSString *)tip type:(SMProgressHUDTipType)type completion:(void (^)(void))completion;
 {
     if (SMProgressHUDStateLoading == _state)
     {
@@ -161,7 +187,7 @@ typedef enum : NSUInteger {
     _state = SMProgressHUDStateTip;
     [_maskLayer setAlpha:0];
     
-    _tipView = [[SMProgressHUDTipView alloc] initWithTip:tip tipType:SMProgressHUDTipTypeSucceed];
+    _tipView = [[SMProgressHUDTipView alloc] initWithTip:tip tipType:type];
 
     [_window addSubview:_tipView];
     [_window setHidden:NO];
@@ -175,9 +201,12 @@ typedef enum : NSUInteger {
             _tipView = nil;
             [_window setHidden:YES];
             _state = SMProgressHUDStateStatic;
+            if (completion)
+            {
+                completion();
+            }
         }];
     }];
-    
 }
 
 #pragma mark 清理
@@ -205,6 +234,7 @@ typedef enum : NSUInteger {
 #pragma mark 消失
 - (void)dismiss
 {
+    NSLog(@"Dismiss LoadingCount:%ld", (long)_loadingCount);
     if (_state == SMProgressHUDStateStatic)
     {
         return;

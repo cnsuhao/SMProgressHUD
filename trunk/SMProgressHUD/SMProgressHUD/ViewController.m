@@ -17,12 +17,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setBackgroundColor:[UIColor greenColor]];
 }
 
 - (IBAction)showLoading:(id)sender
 {
-    [[SMProgressHUD shareInstancetype] showLoadingWithTip:nil];
+    [[SMProgressHUD shareInstancetype] showLoading];
 }
+
+- (IBAction)showLoadingWithText:(id)sender {
+    [[SMProgressHUD shareInstancetype] showLoadingWithTip:@"Loading..."];
+}
+
 - (IBAction)showAlertView:(id)sender {
     [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." delegate:nil alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] ];
 }
@@ -49,7 +55,31 @@
     [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." delegate:self alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] ];
 }
 
+- (IBAction)showThreeLoading:(id)sender {
+    [self showLoading:nil];
+    [self performSelector:@selector(showLoading:) withObject:nil afterDelay:10];
+    [self performSelector:@selector(showLoading:) withObject:nil afterDelay:20];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:10];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:20];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:30];
+}
 
+- (void)dismiss
+{
+    [[SMProgressHUD shareInstancetype] dismiss];
+}
+
+
+- (IBAction)showDoneTip:(id)sender {
+    [[SMProgressHUD shareInstancetype] showDoneTip:@"Done"];
+    
+}
+- (IBAction)showErrorTip:(id)sender {
+     [[SMProgressHUD shareInstancetype] showErrorTip:@"Error"];
+}
+- (IBAction)showWarning:(id)sender {
+    [[SMProgressHUD shareInstancetype] showWarningTip:@"Warning"];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -97,4 +97,10 @@
     }
     [_circles removeAllObjects];
 }
+
+#pragma mark 设置提示文字
+-(void)setTipText:(NSString *)tip;
+{
+    [_tip setText:tip==nil?SMProgressHUDLoadingTip:tip];
+}
 @end

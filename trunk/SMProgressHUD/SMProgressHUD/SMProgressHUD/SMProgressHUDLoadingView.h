@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SMProgressHUDLoadingView : UIView
+-(void)setTipText:(NSString *)tip;
 @end
