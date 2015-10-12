@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ENUM(NSInteger, SMProgressHUDTipType)
+typedef NS_ENUM(NSInteger, SMProgressHUDTipType)
 {
     SMProgressHUDTipTypeSucceed = 0,
     SMProgressHUDTipTypeDone,
@@ -17,5 +17,5 @@ NS_ENUM(NSInteger, SMProgressHUDTipType)
 };
 
 @interface SMProgressHUDTipView : UIView
-
+-(instancetype)initWithTip:(NSString *)tip tipType:(SMProgressHUDTipType)type;
 @end

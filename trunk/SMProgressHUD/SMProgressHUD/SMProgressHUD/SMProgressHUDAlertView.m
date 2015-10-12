@@ -13,7 +13,7 @@
 static const NSInteger CANCELINDEX = 0;
 
 @interface SMProgressHUDAlertView() <UITextFieldDelegate>
-@property (assign, nonatomic) AlertViewCompletion completion;
+@property (strong, nonatomic) AlertViewCompletion completion;
 @end
 
 @implementation SMProgressHUDAlertView

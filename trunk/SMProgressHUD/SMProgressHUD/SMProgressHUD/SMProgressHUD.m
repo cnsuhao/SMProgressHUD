@@ -10,6 +10,7 @@
 #import "SMProgressHUD.h"
 #import "SMProgressHUDLoadingView.h"
 #import "SMProgressHUDConfigure.h"
+#import "SMProgressHUDTipView.h"
 
 static SMProgressHUD *_indicatorInstance;
 
@@ -17,6 +18,7 @@ typedef enum : NSUInteger {
     SMProgressHUDStateStatic,
     SMProgressHUDStateLoading,
     SMProgressHUDStateAlert,
+    SMProgressHUDStateTip
 } SMProgressHUDState;
 
 @interface SMProgressHUD()
@@ -27,6 +29,7 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) UIView *maskLayer;
 @property (strong, nonatomic) SMProgressHUDAlertView *alertView;
+@property (strong, nonatomic) SMProgressHUDTipView *tipView;
 @end
 
 @implementation SMProgressHUD
@@ -134,6 +137,50 @@ typedef enum : NSUInteger {
     
 }
 
+#pragma mark -TipView
+#pragma mark 显示提示
+- (void)showTip:(NSString*)tip
+{
+    if (SMProgressHUDStateLoading == _state)
+    {
+        [_timer invalidate];
+        [_loadingView setAlpha:0];
+        [_loadingView removeFromSuperview];
+        _loadingCount = 0;
+    }
+    else if(SMProgressHUDStateAlert == _state)
+    {
+        [_alertView removeFromSuperview];
+    }
+    
+    _state = SMProgressHUDStateTip;
+    [_maskLayer setAlpha:0];
+    
+    _tipView = [[SMProgressHUDTipView alloc] initWithTip:tip tipType:SMProgressHUDTipTypeSucceed];
+
+    [_window addSubview:_tipView];
+    [_window setHidden:NO];
+    [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
+        [_tipView setAlpha:1];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:kSMProgressHUDAnimationDuration delay:1.5 options:UIViewAnimationOptionAllowAnimatedContent animations:^{
+            [_tipView setAlpha:0];
+        } completion:^(BOOL finished) {
+            [_tipView removeFromSuperview];
+            _tipView = nil;
+            [_window setHidden:YES];
+            _state = SMProgressHUDStateStatic;
+        }];
+    }];
+    
+}
+
+#pragma mark 清理
+- (void)cleanAllView
+{
+    
+}
+
 #pragma mark 消失
 - (void)dismiss
 {
@@ -154,7 +201,6 @@ typedef enum : NSUInteger {
         case SMProgressHUDStateLoading:
         {
             [_timer invalidate];
-            _state = SMProgressHUDStateStatic;
             _loadingCount = 0;
             [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
                 [_maskLayer setAlpha:0];
@@ -180,6 +226,6 @@ typedef enum : NSUInteger {
         default:
             break;
     }
-    
+    _state = SMProgressHUDStateStatic;
 }
 @end

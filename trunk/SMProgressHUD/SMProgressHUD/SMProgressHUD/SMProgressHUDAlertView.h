@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger,SMProgressHUDAlertViewStyle)
     SMProgressHUDAlertViewStyleLoginAndPasswordInput
 };
 
+
 @interface SMProgressHUDAlertView : UIView
 @property (nonatomic, strong, readonly) UITextField *plainTextInput;
 @property (nonatomic, strong, readonly) UITextField *secureTextInput;
