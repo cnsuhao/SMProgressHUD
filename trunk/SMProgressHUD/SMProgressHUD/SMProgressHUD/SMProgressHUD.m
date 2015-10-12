@@ -26,6 +26,7 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) SMProgressHUDLoadingView *loadingView;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) UIView *maskLayer;
+@property (strong, nonatomic) SMProgressHUDAlertView *alertView;
 @end
 
 @implementation SMProgressHUD
@@ -105,7 +106,31 @@ typedef enum : NSUInteger {
             [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
         }
     }];
+}
+
+#pragma mark - AlertView
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message alertStyle:(SMProgressHUDAlertViewStyle)alertStyle cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSArray *)otherButtonTitles completion:(void (^)(SMProgressHUDAlertView *alertView, NSInteger buttonIndex))completion
+{
+    if (SMProgressHUDStateLoading == _state)
+    {
+        [_timer invalidate];
+        [_loadingView setAlpha:0];
+        [_loadingView removeFromSuperview];
+        _loadingCount = 0;
+    }
+    else if(SMProgressHUDStateAlert == _state)
+    {
+        [_alertView removeFromSuperview];
+    }
     
+    _state = SMProgressHUDStateAlert;
+    _alertView = [[SMProgressHUDAlertView alloc] initWithTitle:title message:message alertViewStyle:alertStyle cancelButtonTitle:cancelButtonTitle otherButtonTitles:otherButtonTitles completion:completion];
+    [_window addSubview:_alertView];
+    [_window setHidden:NO];
+    [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
+        [_maskLayer setAlpha:1];
+        [_alertView setAlpha:1];
+    }];
     
 }
 
@@ -137,6 +162,18 @@ typedef enum : NSUInteger {
             } completion:^(BOOL finished) {
                 [_window setHidden:YES];
                 [_loadingView removeFromSuperview];
+            }];
+            break;
+        }
+        case SMProgressHUDStateAlert:
+        {
+            [UIView animateWithDuration:kSMProgressHUDAnimationDuration animations:^{
+                [_maskLayer setAlpha:0];
+                [_alertView setAlpha:0];
+            } completion:^(BOOL finished) {
+                [_window setHidden:YES];
+                [_alertView removeFromSuperview];
+                _alertView = nil;
             }];
             break;
         }

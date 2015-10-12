@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C549D4B11BC8B43C00FCD86B /* SMProgressHUDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C549D4B01BC8B43C00FCD86B /* SMProgressHUDLoadingView.m */; };
+		C5D3395F1BCB506F00080200 /* SMProgressHUDAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D3395E1BCB506F00080200 /* SMProgressHUDAlertView.m */; };
+		C5D339621BCB65D800080200 /* SMProgressHUDTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D339611BCB65D800080200 /* SMProgressHUDTipView.m */; };
 		C5D69C1A1BC7AD1900E3C2C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D69C191BC7AD1900E3C2C5 /* main.m */; };
 		C5D69C1D1BC7AD1900E3C2C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D69C1C1BC7AD1900E3C2C5 /* AppDelegate.m */; };
 		C5D69C201BC7AD1900E3C2C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5D69C1F1BC7AD1900E3C2C5 /* ViewController.m */; };
@@ -33,6 +35,10 @@
 		C549D4AE1BC8B3CE00FCD86B /* SMProgressHUDConfigure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMProgressHUDConfigure.h; sourceTree = "<group>"; };
 		C549D4AF1BC8B43C00FCD86B /* SMProgressHUDLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressHUDLoadingView.h; sourceTree = "<group>"; };
 		C549D4B01BC8B43C00FCD86B /* SMProgressHUDLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressHUDLoadingView.m; sourceTree = "<group>"; };
+		C5D3395D1BCB506F00080200 /* SMProgressHUDAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressHUDAlertView.h; sourceTree = "<group>"; };
+		C5D3395E1BCB506F00080200 /* SMProgressHUDAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressHUDAlertView.m; sourceTree = "<group>"; };
+		C5D339601BCB65D800080200 /* SMProgressHUDTipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMProgressHUDTipView.h; sourceTree = "<group>"; };
+		C5D339611BCB65D800080200 /* SMProgressHUDTipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMProgressHUDTipView.m; sourceTree = "<group>"; };
 		C5D69C141BC7AD1900E3C2C5 /* SMProgressHUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMProgressHUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D69C181BC7AD1900E3C2C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5D69C191BC7AD1900E3C2C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,6 +144,10 @@
 				C5D69C3F1BC7AEDE00E3C2C5 /* SMProgressHUD.m */,
 				C549D4AF1BC8B43C00FCD86B /* SMProgressHUDLoadingView.h */,
 				C549D4B01BC8B43C00FCD86B /* SMProgressHUDLoadingView.m */,
+				C5D3395D1BCB506F00080200 /* SMProgressHUDAlertView.h */,
+				C5D3395E1BCB506F00080200 /* SMProgressHUDAlertView.m */,
+				C5D339601BCB65D800080200 /* SMProgressHUDTipView.h */,
+				C5D339611BCB65D800080200 /* SMProgressHUDTipView.m */,
 			);
 			path = SMProgressHUD;
 			sourceTree = "<group>";
@@ -243,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D339621BCB65D800080200 /* SMProgressHUDTipView.m in Sources */,
+				C5D3395F1BCB506F00080200 /* SMProgressHUDAlertView.m in Sources */,
 				C5D69C401BC7AEDE00E3C2C5 /* SMProgressHUD.m in Sources */,
 				C5D69C201BC7AD1900E3C2C5 /* ViewController.m in Sources */,
 				C549D4B11BC8B43C00FCD86B /* SMProgressHUDLoadingView.m in Sources */,

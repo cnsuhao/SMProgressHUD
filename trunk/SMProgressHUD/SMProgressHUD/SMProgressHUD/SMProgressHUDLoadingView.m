@@ -35,8 +35,6 @@
         [tip setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:tip];
         self.tip = tip;
-        
-        [self setNeedsDisplay];
     }
     return self;
 }
@@ -44,11 +42,10 @@
 #pragma mark 添加动画
 - (void)addAnimation
 {
-
-    CGFloat width = 15.f;
-    CGFloat x = (self.frame.size.width - width*5 -40)/2;
+    CGFloat width = 10.f;
+    CGFloat x = (self.frame.size.width - width*6 -50)/2;
     CGFloat y = 30.f;
-    for (NSInteger index = 0; index < 5; ++index)
+    for (NSInteger index = 0; index < 6; ++index)
     {
         CALayer *cirlce = [CALayer layer];
         [cirlce setFrame:CGRectMake(x + (width+10)*index, y, width, width)];
@@ -84,7 +81,7 @@
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
-    if (_circles.count ==0 )
+    if (_circles.count == 0)
     {
         [self addAnimation];
     }

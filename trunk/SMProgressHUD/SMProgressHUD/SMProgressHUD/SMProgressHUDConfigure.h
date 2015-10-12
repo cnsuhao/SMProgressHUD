@@ -22,6 +22,7 @@ static const CGFloat kSMProgressHUDCornerRadius = 5.f;
 static const CGFloat  kSMProgressHUDLoadingIconWH = 30.f;
 static const CGFloat  kSMProgressHUDContentWidth = 200.f;
 static const CGFloat  kSMProgressHUDContentHeight = 100.f;
+static const CGFloat kSMProgressHUDAlertViewWidth = 280.f;
 
 static NSString *SMProgressHUDLoadingTip = @"正在加载中...";
 

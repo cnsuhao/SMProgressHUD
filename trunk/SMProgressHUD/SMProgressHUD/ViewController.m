@@ -23,6 +23,18 @@
 {
     [[SMProgressHUD shareInstancetype] showLoadingWithTip:nil];
 }
+- (IBAction)showAlertView:(id)sender {
+    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." alertStyle:SMProgressHUDAlertViewStyleDefault cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] completion:^(SMProgressHUDAlertView *alertView, NSInteger buttonIndex) {
+        NSLog(@"Click The Button At %ld", (long)buttonIndex);
+    }];
+}
+
+- (IBAction)showAlertViewWithInput:(id)sender {
+    [[SMProgressHUD shareInstancetype] showAlertWithTitle:@"Title" message:@"The difference in winning and losing is most often…not quitting." alertStyle:SMProgressHUDAlertViewStylePlainTextInput cancelButtonTitle:@"Cancel" otherButtonTitles:@[@"Confrim",@"Go"] completion:^(SMProgressHUDAlertView *alertView, NSInteger buttonIndex) {
+        
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
